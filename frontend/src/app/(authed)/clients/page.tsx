@@ -1,6 +1,7 @@
 "use client";
 
 import { Table, Title } from "@mantine/core";
+import Link from "next/link";
 import { useEffect, useState } from "react";
 
 import { useApi } from "@/api/context";
@@ -46,8 +47,18 @@ export default function ClientsPage() {
                 </Table.Thead>
                 <Table.Tbody>
                     {clients.map(client => (
-                        <Table.Tr key={client.id}>
-                            <Table.Td>{client.first_name} {client.last_name}</Table.Td>
+                        <Table.Tr
+                            key={client.id}
+                            className={styles.clickableRow}
+                        >
+                            <Table.Td>
+                                <Link
+                                    href={`/clients/${client.id}`}
+                                    className={styles.rowLink}
+                                >
+                                    {client.first_name} {client.last_name}
+                                </Link>
+                            </Table.Td>
                             <Table.Td>{client.email}</Table.Td>
                             <Table.Td>{client.assigned_user_id ? "Yes" : "No"}</Table.Td>
                         </Table.Tr>

@@ -1,0 +1,46 @@
+.container {
+    padding: var(--mantine-spacing-xl);
+    max-width: 1100px;
+}
+
+.centered {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 60vh;
+}
+
+.header {
+    margin-bottom: var(--mantine-spacing-lg);
+    padding-bottom: var(--mantine-spacing-lg);
+    border-bottom: 1px solid var(--mantine-color-default-border);
+}
+
+.avatar {
+    font-weight: 700;
+    font-size: 1.25rem;
+}
+
+.topGrid {
+    margin-bottom: var(--mantine-spacing-md);
+}
+
+.infoCard {
+    height: 100%;
+}
+
+.statCard {
+    transition: box-shadow 120ms ease;
+
+    &:hover {
+        box-shadow: var(--mantine-shadow-sm);
+    }
+}
+
+.tabs {
+    margin-top: var(--mantine-spacing-sm);
+}
+
+.emptyState {
+    padding: var(--mantine-spacing-xl) 0;
+}
