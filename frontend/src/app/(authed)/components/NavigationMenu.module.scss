@@ -4,6 +4,12 @@
 
 .nav-bar {
     background-color: var(--mantine-color-black);
+    --app-shell-navbar-width: 240px;
+
+    @media (max-width: 48em) { 
+    --app-shell-navbar-width: 90vw;
+    }
+    width: var(--app-shell-navbar-width);
 }
 
 .nav-button {

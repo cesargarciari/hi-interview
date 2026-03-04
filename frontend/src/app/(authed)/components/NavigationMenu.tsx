@@ -50,14 +50,16 @@ export default function NavigationMenu({
             classNames={{ root: styles.root }}
             header={{ height: 60, collapsed: { desktop: true } }}
             navbar={{
-                width: 240,
+                // Add this line below: base is for mobile, sm is for desktop
+                width: { base: "80vw", sm: 240 }, 
                 breakpoint: "sm",
                 collapsed: { mobile: !opened },
             }}
         >
             
             {/* ── Sidebar ── */}
-            <AppShell.Navbar className={styles["nav-bar"]}>
+            <AppShell.Navbar 
+                className={styles["nav-bar"]} >
                 <AppShell.Section grow>
                     <div
                         className={
