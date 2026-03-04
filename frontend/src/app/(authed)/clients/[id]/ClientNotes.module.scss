@@ -1,0 +1,30 @@
+.addNote {
+    padding: var(--mantine-spacing-md);
+}
+
+.textarea {
+    textarea {
+        font-size: var(--mantine-font-size-sm);
+        line-height: 1.6;
+    }
+}
+
+.timeline {
+    // give the connecting line a bit of breathing room
+    padding-left: var(--mantine-spacing-xs);
+}
+
+.bullet {
+    font-size: 0.65rem;
+    font-weight: 700;
+}
+
+.noteContent {
+    padding: var(--mantine-spacing-xs) var(--mantine-spacing-sm);
+    background-color: var(--mantine-color-default-hover);
+}
+
+.emptyNotes {
+    padding: var(--mantine-spacing-xl);
+    text-align: center;
+}

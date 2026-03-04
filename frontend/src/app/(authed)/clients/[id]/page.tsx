@@ -26,6 +26,7 @@ import {
     IconClock,
     IconFiles,
     IconMail,
+    IconNotes,
     IconPhone,
     IconTrendingUp,
     IconUser,
@@ -37,6 +38,7 @@ import Link from "next/link";
 import { useApi } from "@/api/context";
 import { Client } from "@/types/clients";
 
+import ClientNotes from "./ClientNotes";
 import styles from "./page.module.scss";
 
 
@@ -320,13 +322,18 @@ export default function ClientDetailPage() {
                         leftSection={<IconChartBar size={14} />}>
                         Overview
                     </Tabs.Tab>
-                    <Tabs.Tab 
-                        value="activity" 
+                    <Tabs.Tab
+                        value="activity"
                         leftSection={<IconActivity size={14} />}>
                         Activity
                     </Tabs.Tab>
-                    <Tabs.Tab 
-                        value="documents" 
+                    <Tabs.Tab
+                        value="notes"
+                        leftSection={<IconNotes size={14} />}>
+                        Notes
+                    </Tabs.Tab>
+                    <Tabs.Tab
+                        value="documents"
                         leftSection={<IconFiles size={14} />}>
                         Documents
                     </Tabs.Tab>
@@ -426,6 +433,12 @@ export default function ClientDetailPage() {
                             </Timeline.Item>
                         </Timeline>
                     </Card>
+                </Tabs.Panel>
+
+                <Tabs.Panel
+                    value="notes"
+                    pt="md">
+                    <ClientNotes clientId={client.id} />
                 </Tabs.Panel>
 
                 <Tabs.Panel value="documents" pt="md">
