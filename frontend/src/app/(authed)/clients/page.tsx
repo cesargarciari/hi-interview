@@ -1,18 +1,22 @@
 "use client";
 
-import { Table, Title } from "@mantine/core";
+import { Button, Group, Table, Title } from "@mantine/core";
+import { useDisclosure } from "@mantine/hooks";
+import { IconUserPlus } from "@tabler/icons-react";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 
 import { useApi } from "@/api/context";
 import { Client } from "@/types/clients";
 
+import CreateClientModal from "./CreateClientModal";
 import styles from "./page.module.scss";
 
 export default function ClientsPage() {
     const api = useApi();
     const [clients, setClients] = useState<Client[]>([]);
     const [loading, setLoading] = useState(true);
+    const [modalOpened, { open: openModal, close: closeModal }] = useDisclosure(false);
 
     useEffect(() => {
         api.clients.listClients()
@@ -20,18 +24,31 @@ export default function ClientsPage() {
             .finally(() => setLoading(false));
     }, [api]);
 
+    const handleSuccess = (newClient: Client) => {
+        closeModal();
+        setClients((prev) => [newClient, ...prev]);
+    };
+
     if (loading) {
         return <div className={styles.container}>Loading...</div>;
     }
 
     return (
         <div className={styles.container}>
-            <Title
-                order={2}
+            <Group
+                justify="space-between"
+                align="center"
                 className={styles.title}
             >
-                Clients
-            </Title>
+                <Title order={2}>Clients</Title>
+                <Button
+                    leftSection={<IconUserPlus size={16} />}
+                    color="violet"
+                    onClick={openModal}
+                >
+                    New Client
+                </Button>
+            </Group>
             <Table
                 striped
                 highlightOnHover
@@ -65,6 +82,12 @@ export default function ClientsPage() {
                     ))}
                 </Table.Tbody>
             </Table>
+
+            <CreateClientModal
+                opened={modalOpened}
+                onClose={closeModal}
+                onSuccess={handleSuccess}
+            />
         </div>
     );
 }

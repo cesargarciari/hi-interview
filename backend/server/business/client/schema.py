@@ -24,3 +24,9 @@ class PNote(BaseModel):
 
 class PCreateNoteRequest(BaseModel):
     content: str
+
+
+class PCreateClientRequest(BaseModel):
+    first_name: str
+    last_name: str
+    email: str

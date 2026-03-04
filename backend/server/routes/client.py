@@ -1,17 +1,37 @@
 from fastapi import APIRouter, HTTPException
 
+from sqlalchemy.exc import IntegrityError
+
 from server.business.auth.auth_verifier import AuthVerifier
 from server.business.auth.schema import UserTokenInfo
+from server.business.client.create import create_client
 from server.business.client.get import get_client
 from server.business.client.list import list_clients
 from server.business.client.notes import create_note, list_notes
-from server.business.client.schema import PClient, PCreateNoteRequest, PNote
+from server.business.client.schema import PClient, PCreateClientRequest, PCreateNoteRequest, PNote
 from server.shared.databasemanager import DatabaseManager
 from server.shared.pydantic import PList
 
 
 def get_router(database: DatabaseManager, auth_verifier: AuthVerifier) -> APIRouter:
     router = APIRouter()
+
+    @router.post("/client", status_code=201)
+    async def create_client_route(
+        body: PCreateClientRequest,
+        token_info: UserTokenInfo = auth_verifier.UserTokenInfo(),
+    ) -> PClient:
+        with database.create_session() as session:
+            try:
+                return create_client(
+                    session,
+                    body.first_name,
+                    body.last_name,
+                    body.email,
+                    token_info.user_id,
+                )
+            except IntegrityError:
+                raise HTTPException(status_code=409, detail="A client with this email already exists")
 
     @router.get("/client")
     async def list_clients_route(

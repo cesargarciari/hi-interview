@@ -1,6 +1,6 @@
 import { AxiosInstance } from "axios";
 
-import { Client } from "@/types/clients";
+import { Client, CreateClientRequest } from "@/types/clients";
 import { Note } from "@/types/notes";
 
 export default class ClientsApi {
@@ -30,6 +30,11 @@ export default class ClientsApi {
             `client/${clientId}/notes`,
             { content },
         );
+        return response.data;
+    };
+
+    public createClient = async (data: CreateClientRequest): Promise<Client> => {
+        const response = await this.axiosInstance.post<Client>("client", data);
         return response.data;
     };
 }
