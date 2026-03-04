@@ -263,21 +263,43 @@ export default function ClientDetailPage() {
                 </Grid.Col>
 
                 <Grid.Col span={{ base: 12, md: 7 }}>
-                    <Card withBorder radius="md" className={styles.infoCard}>
-                        <Text size="xs" c="dimmed" tt="uppercase" fw={700} mb="md">
+                    <Card 
+                        withBorder 
+                        radius="md" 
+                        className={styles.infoCard}>
+                        <Text 
+                            size="xs" 
+                            c="dimmed" 
+                            tt="uppercase" 
+                            fw={700} 
+                            mb="md">
                             Financial Summary
                         </Text>
-                        <Group justify="space-between" align="flex-start">
-                            <Stack gap="md" style={{ flex: 1 }}>
+                        <Group 
+                            justify="space-between" 
+                            align="flex-start">
+                            <Stack 
+                                gap="md" 
+                                style={{ flex: 1 }}>
                                 <div>
-                                    <Text size="xs" c="dimmed">Account Balance</Text>
-                                    <Text size="xl" fw={700}>{financials.balance}</Text>
+                                    <Text 
+                                        size="xs" 
+                                        c="dimmed">Account Balance</Text>
+                                    <Text 
+                                        size="xl" 
+                                        fw={700}>{financials.balance}</Text>
                                 </div>
                                 <div>
-                                    <Text size="xs" c="dimmed">Portfolio Value</Text>
-                                    <Text size="lg" fw={600}>{financials.portfolioValue}</Text>
+                                    <Text 
+                                        size="xs" 
+                                        c="dimmed">Portfolio Value</Text>
+                                    <Text 
+                                        size="lg" 
+                                        fw={600}>{financials.portfolioValue}</Text>
                                 </div>
-                                <Group gap="xs" align="center">
+                                <Group 
+                                    gap="xs" 
+                                    align="center">
                                     <IconTrendingUp
                                         size={16}
                                         color={financials.returnPct >= 0 ? "green" : "red"}
@@ -292,19 +314,26 @@ export default function ClientDetailPage() {
                                     </Text>
                                 </Group>
                             </Stack>
-                            <Stack align="center" gap={4}>
+                            <Stack 
+                                align="center" 
+                                gap={4}>
                                 <RingProgress
                                     size={100}
                                     thickness={8}
                                     roundCaps
                                     sections={[{ value: financials.riskScore * 20, color: "violet" }]}
                                     label={
-                                        <Text ta="center" size="xs" fw={700}>
+                                        <Text 
+                                            ta="center" 
+                                            size="xs" 
+                                            fw={700}>
                                             {financials.riskScore}/5
                                         </Text>
                                     }
                                 />
-                                <Text size="xs" c="dimmed">Risk Score</Text>
+                                <Text 
+                                    size="xs" 
+                                    c="dimmed">Risk Score</Text>
                             </Stack>
                         </Group>
                     </Card>
@@ -441,14 +470,27 @@ export default function ClientDetailPage() {
                     <ClientNotes clientId={client.id} />
                 </Tabs.Panel>
 
-                <Tabs.Panel value="documents" pt="md">
-                    <Card withBorder radius="md" className={styles.emptyState}>
-                        <Stack align="center" gap="sm">
-                            <ThemeIcon size={48} variant="light" color="violet" radius="xl">
+                <Tabs.Panel 
+                    value="documents" 
+                    pt="md">
+                    <Card 
+                        withBorder 
+                        radius="md" 
+                        className={styles.emptyState}>
+                        <Stack 
+                            align="center" 
+                            gap="sm">
+                            <ThemeIcon 
+                                size={48} 
+                                variant="light" 
+                                color="violet" 
+                                radius="xl">
                                 <IconFiles size={24} />
                             </ThemeIcon>
                             <Text fw={600}>No documents yet</Text>
-                            <Text size="sm" c="dimmed">
+                            <Text 
+                                size="sm" 
+                                c="dimmed">
                                 Uploaded statements and agreements will appear here.
                             </Text>
                         </Stack>
